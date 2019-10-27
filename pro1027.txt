@@ -90,7 +90,7 @@ SELECT * FROM Table1026 ORDER BY id LIMIT 3 OFFSET 1;
 
 -- 修改（UPDATE）
 -- 一定要加上where限制条件，否则整列都会被修改
-UPDATE Table1026 SET hight=160 WHERE sname='蕊儿';
+UPDATE Table1026 SET height=160 WHERE sname='蕊儿';
 
 
 -- 删除（DELETE）
