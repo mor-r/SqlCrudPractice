@@ -1,0 +1,98 @@
+-- 指定列的插入
+INSERT INTO Table1026(id,sname,age,create_time,hight) VALUES (1,"庆",20,0000-00-00,180);
+
+
+-- 全字段插入
+INSERT INTO Table1026 VALUES(2,"蕊",20，NULL，160);
+
+
+-- 全列查询
+-- 通常情况下不建议使用 * 进行全列的查询
+-- 查询的列越多，意味着需要传输的数据量越大，可能还会影响到索引的使用
+SELECT * FROM Table1026;
+SELECT id,sname,age,create_time FROM Table1026;
+
+
+-- 指定列查询
+-- 指定列的顺序不需要按定义表的顺序来
+SELECT id,sname FROM Table1026;
+
+
+-- 查询字段为表达式
+SELECT age+1 FROM Table1026;
+SELECT id+1 FROM Table1026;
+
+
+-- 别名
+SELECT id,sname n,age FROM Table1026;
+
+
+-- 去重（DISTINCT）
+SELECT DISTINCT age FROM Table1026;
+
+
+-- 排序（ORDER BY）
+-- 升序为ASC（默认）
+SELECT id,sname,age FROM Table1026 ORDER BY age;
+-- 降序为DESC
+SELECT id,sname,age FROM Table1026 ORDER BY id DESC;
+-- 使用表达式及别名排序
+SELECT id,sname n,age FROM Table1026 ORDER BY n ASC;
+-- 可以对多个字段进行排序，排序优先随书写顺序
+SELECT id,sname,age FROM Table1026 ORDER BY age DESC,id;
+SELECT id,sname,age FROM Table1026 ORDER BY id,age DESC;
+
+
+-- 条件查询（WHERE）
+-- 比较运算符/逻辑运行算符
+SELECT id,sname,age FROM Table1026 WHERE age<20;
+-- WHERE条件可以使用表达式，但不能使用别名
+SELECT id,sname,age a FROM Table1026 WHERE a<20;
+-- AND
+SELECT * FROM Table1026 WHERE id>10 AND age>15;
+-- OR
+SELECT * FROM Table1026 WHERE id>5 OR age<5;
+-- AND优先级高于OR
+SELECT * FROM Table1026 WHERE id>5 OR age>15 AND hight>170;
+SELECT * FROM Table1026 WHERE (id>5 OR age>15) AND hight>170;
+
+
+-- 范围查询
+-- BETWEEN...TO...
+SELECT * FROM Table1026 WHERE age BETWEEN 18 AND 20;
+-- 使用AND也可以实现
+SELECT * FROM Table1026 WHERE age>=18 AND age<=20;
+-- IN
+SELECT * FROM Table1026 WHERE hight IN(178,160,180);
+-- 使用OR 也可以实现
+SELECT * FROM Table1026 WHERE hight=178 OR hight=160 OR hight=180;
+
+
+-- 模糊查询（LIKE）
+-- % 匹配任意多个（包括0个字符）
+SELECT * FROM Table1026 WHERE sname LIKE '%庆';
+-- _ 匹配严格的一个任意字符
+SELECT * FROM Table1026 WHERE sname LIKE '_庆';
+-- NULL的查询：IS(NOT) NULL
+SELECT * FROM Table1026 WHERE create_time IS NOT NULL;
+SELECT * FROM Table1026 WHERE create_time IS NULL;
+
+
+-- 分页查询（LIMIT）
+-- 起始下标为0
+-- 从 0 开始，筛选 3 条结果
+SELECT * FROM Table1026 ORDER BY id LIMIT 3;
+-- 从 1 开始，筛选 3 条结果
+SELECT * FROM Table1026 ORDER BY id LIMIT 1,3;
+-- 从 1 开始，筛选 3 条结果，比第二种用法更明确，建议使用
+SELECT * FROM Table1026 ORDER BY id LIMIT 3 OFFSET 1;
+
+
+-- 修改（UPDATE）
+-- 一定要加上where限制条件，否则整列都会被修改
+UPDATE Table1026 SET hight=160 WHERE sname='蕊儿';
+
+
+-- 删除（DELETE）
+-- 同理也要注意加上where条件，否则整张表都会被删除
+DELETE FROM Table1026 WHERE sname='小小庆';
