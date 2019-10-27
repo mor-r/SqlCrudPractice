@@ -1,5 +1,5 @@
 -- 指定列的插入
-INSERT INTO Table1026(id,sname,age,create_time,hight) VALUES (1,"庆",20,0000-00-00,180);
+INSERT INTO Table1026(id,sname,age,create_time,height) VALUES (1,"庆",20,0000-00-00,180);
 
 
 -- 全字段插入
@@ -53,8 +53,8 @@ SELECT * FROM Table1026 WHERE id>10 AND age>15;
 -- OR
 SELECT * FROM Table1026 WHERE id>5 OR age<5;
 -- AND优先级高于OR
-SELECT * FROM Table1026 WHERE id>5 OR age>15 AND hight>170;
-SELECT * FROM Table1026 WHERE (id>5 OR age>15) AND hight>170;
+SELECT * FROM Table1026 WHERE id>5 OR age>15 AND height>170;
+SELECT * FROM Table1026 WHERE (id>5 OR age>15) AND height>170;
 
 
 -- 范围查询
@@ -63,9 +63,9 @@ SELECT * FROM Table1026 WHERE age BETWEEN 18 AND 20;
 -- 使用AND也可以实现
 SELECT * FROM Table1026 WHERE age>=18 AND age<=20;
 -- IN
-SELECT * FROM Table1026 WHERE hight IN(178,160,180);
+SELECT * FROM Table1026 WHERE height IN(178,160,180);
 -- 使用OR 也可以实现
-SELECT * FROM Table1026 WHERE hight=178 OR hight=160 OR hight=180;
+SELECT * FROM Table1026 WHERE height=178 OR height=160 OR height=180;
 
 
 -- 模糊查询（LIKE）
